@@ -19,12 +19,15 @@
 
 <h2>Reviews</h2>
 <div class="my-3">
-<%= link_to 'Leave a review', new_restaurant_review_path(@restaurant), class:"btn btn-success" %>
+<%# <%#= link_to 'Leave a review', new_restaurant_review_path(@restaurant), class:"btn btn-success" %> %>
 </div>
 <% if @restaurant.reviews.count == 0 %>
 This restaurant has no reviews yet.
 <% else %>
   <% @restaurant.reviews.each do |review| %>
-    <%= render "review", review: review %>
+    <%= render "reviews/review", review: review %>
   <% end %>
 <% end %>
+
+<h4>Leave A Review</h4>
+<%= render "reviews/form", restaurant: @restaurant, review: @review %>

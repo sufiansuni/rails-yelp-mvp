@@ -1,5 +1,5 @@
 <%= simple_form_for [restaurant, review] do |f| %>
-  <%= f.input :rating %>
+  <%= f.input :rating, input_html: { min: '0', max: '1' } %>
   <%= f.input :content %>
   <%= f.submit %>
 <% end %>
