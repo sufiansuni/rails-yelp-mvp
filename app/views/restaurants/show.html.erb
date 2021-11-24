@@ -1,0 +1,30 @@
+<h1><%= @restaurant.name %></h1>
+
+<div class="my-3">
+  Category: <%= @restaurant.category.capitalize %><br>
+  Address: <%= @restaurant.address %><br>
+  Phone Number: <%= @restaurant.phone_number %><br>
+</div>
+
+<div class="my-3">
+<%= link_to "Back", restaurants_path, class:"btn btn-primary" %>
+<%= link_to "Edit", edit_restaurant_path(@restaurant), class:"btn btn-success" %>
+<%= link_to "Delete",
+            restaurant_path(@restaurant),
+            method: :delete,
+            data: { confirm: "Are you sure?" },
+            class: "btn btn-danger"
+            %>
+</div>
+
+<h2>Reviews</h2>
+<div class="my-3">
+<%= link_to 'Leave a review', new_restaurant_review_path(@restaurant), class:"btn btn-success" %>
+</div>
+<% if @restaurant.reviews.count == 0 %>
+This restaurant has no reviews yet.
+<% else %>
+  <% @restaurant.reviews.each do |review| %>
+    <%= render "review", review: review %>
+  <% end %>
+<% end %>
